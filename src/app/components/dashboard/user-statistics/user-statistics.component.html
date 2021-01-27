@@ -1,0 +1,53 @@
+<div fxLayout="row wrap" fxLayoutGap="10px grid" fxLayoutAlign="space-around stretch" fxLayout.lt-sm="column">
+    <!--Total users-->
+    <div fxFlex="0 1 25%" fxFlex.lt-md="0 0 25%" fxFlex.lt-sm="0 0 50%">
+        <div class="info-box bg-blue">
+            <button class="info-box-icon push-bottom" aria-label="info icon">
+                <mat-icon>people</mat-icon>
+            </button>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Users</span>
+                <span class="info-box-number">{{userStatistics?.totalUsers}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Active users-->
+    <div fxFlex="0 1 25%" fxFlex.lt-md="0 0 25%" fxFlex.lt-sm="0 0 50%">
+        <div class="info-box bg-green">
+            <button class="info-box-icon push-bottom" aria-label="info icon">
+                <mat-icon>mobile_friendly</mat-icon>
+            </button>
+            <div class="info-box-content">
+                <span class="info-box-text">Active Users</span>
+                <span class="info-box-number">{{userStatistics?.activeUsers}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Inactive Users-->
+    <div fxFlex="0 1 25%" fxFlex.lt-md="0 0 25%" fxFlex.lt-sm="0 0 50%">
+        <div class="info-box bg-purple">
+            <button class="info-box-icon push-bottom" aria-label="info icon">
+                <mat-icon>mobile_off</mat-icon>
+            </button>
+            <div class="info-box-content">
+                <span class="info-box-text">Inactive Users</span>
+                <span class="info-box-number">{{userStatistics?.inActiveUsers}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Total reputation-->
+    <div fxFlex="0 1 25%" fxFlex.lt-md="0 0 25%" fxFlex.lt-sm="0 0 50%">
+        <div class="info-box bg-red">
+            <button class="info-box-icon push-bottom" aria-label="info icon">
+                <mat-icon>monetization_on</mat-icon>
+            </button>
+            <div class="info-box-content">
+                <span class="info-box-text">Points Scanned</span>
+                <span class="info-box-number">{{userStatistics?.pointsScanned}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+picture
+{
+   border: 1px solid black;
+   position: relative;
+   height: 250px;
+}
+
+picture mat-icon
+{
+   position: relative;
+   top: 45%; 
+   bottom:45%;
+   left:45%;
+   right:45%;
+}
+
+picture img
+{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}

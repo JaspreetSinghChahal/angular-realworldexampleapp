@@ -1,0 +1,7 @@
+.promocodes {
+    min-height: calc(100vh - 100px);
+}
+
+::ng-deep .mat-slide-toggle-content{
+    font-weight: bold !important;
+}

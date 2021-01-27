@@ -1,0 +1,91 @@
+<mat-card class="mat-elevation-z8 bg-white" #promocodeInfoContainer>
+
+    <mat-card-header>
+        <mat-card-title> Promocode Info </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <div fxFlexLayout="row">
+
+            <section #promoCodeinfo>
+
+                <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start">
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Loyalty Points</mat-label>
+                            <input matInput type="number" [readonly]="true" value={{promocodeInfo?.loyaltyPoints}}
+                                placeholder="000" aria-label="loyaltyPoints" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Expiration Date</mat-label>
+                            <input matInput [matDatepicker]="picker" value={{promocodeInfo?.expirationDateTime}}
+                                [readonly]="true" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Brand Name</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.brandName}}
+                                placeholder="brand" aria-label="brandName" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Promocode Number</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.promoCodeNumber}}
+                                aria-label="promocodenumber" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Batch Name</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.batchName}}
+                                aria-label="batchName" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Is Scanned</mat-label>
+                            <input matInput type="text" [readonly]="true"
+                                [ngClass]="{'success-cell': isScanned === 'Yes', 'failure-cell':  isScanned === 'No'}"
+                                value={{isScanned}} aria-label="isScanned" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Scanned By User</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.scannedByUser}}
+                                aria-label="scannedByUser" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Created On</mat-label>
+                            <input matInput type="text" [readonly]="true"
+                                [value]="promocodeInfo?.createdOn | date:'mediumDate'" aria-label="createdOn" />
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

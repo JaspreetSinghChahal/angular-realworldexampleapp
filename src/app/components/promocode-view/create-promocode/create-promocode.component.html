@@ -1,0 +1,106 @@
+<mat-card class="mat-elevation-z8 bg-white h-90pc" #createPromocodeContainer>
+
+    <mat-card-header>
+        <mat-card-title> Create new Promo code </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <section class="addPromocode">
+
+            <form id="createPromocode" [formGroup]="promocodeForm">
+
+                <div fxFlex="0 1 calc(33.3% - 30px)">
+
+                    <mat-form-field>
+                        <mat-label>Batch Name</mat-label>
+                        <input matInput type="text" formControlName="batchName" placeholder="Scheme 1"
+                            [readonly]="created" aria-label="batchName" autocomplete="off">
+                        <mat-error class="error-message" *ngIf="data.batchName.invalid">
+                            <span *ngIf="data.batchName.errors?.required">Batch name is required</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxFlex="0 1 calc(33.3% - 30px)">
+
+                    <mat-form-field>
+                        <mat-label>Brand Name</mat-label>
+                        <mat-select placeholder="Choose brand" formControlName="brandId">
+                            <mat-option *ngFor="let brand of allBrands" [value]="brand.brandId"> {{ brand.brandName }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error class="error-message" *ngIf="data.brandId.invalid">
+                            <span *ngIf="data.brandId.errors?.required">Brand is required</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxFlex="0 1 calc(33.3% - 30px)">
+
+                    <mat-form-field>
+                        <mat-label>Loyalty Points</mat-label>
+                        <input matInput type="number" formControlName="loyaltyPoints" placeholder="100"
+                            [readonly]="created" aria-label="loyaltyPoints" autocomplete="off">
+                        <mat-error class="error-message" *ngIf="data.loyaltyPoints.invalid">
+                            <span *ngIf="data.loyaltyPoints.errors?.required">Loyalty Points are required</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxFlex="0 1 calc(33.3% - 30px)">
+
+                    <mat-form-field>
+                        <mat-label>No. of Promo Codes</mat-label>
+                        <input matInput type="text" formControlName="noOfPromoCodes" placeholder="10"
+                            [readonly]="created" aria-label="noOfPromoCodes" autocomplete="off">
+                        <mat-error class="error-message" *ngIf="data.noOfPromoCodes.invalid">
+                            <span *ngIf="data.noOfPromoCodes.errors?.required">Number Of PromoCodes is required</span>
+                            <span *ngIf="data.noOfPromoCodes.errors.pattern">Enter integer value</span>
+                            <span *ngIf="data.noOfPromoCodes.errors.min">Enter value greater than 0</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxFlex="0 1 calc(33.3% - 30px)">
+
+                    <mat-form-field>
+                        <mat-label>Expiration Date</mat-label>
+                        <input matInput [matDatepicker]="picker" [min]="today" formControlName="expirationDateTime"
+                            [readonly]="created" autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="created">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error class="error-message" *ngIf="data.expirationDateTime.invalid">
+                            <span *ngIf="data.expirationDateTime.errors?.required">Expiration DateTime is
+                                required</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+            </form>
+
+
+            <div fxLayout=" row" fxLayoutAlign="start" class="addPromocode-btn">
+
+                <button mat-flat-button type="submit" (click)="createPromocode()" [disabled]="created"
+                    color="primary">Submit</button>
+            </div>
+
+        </section>
+
+        <mat-divider class="promocode-horizontal-divider"></mat-divider>
+
+
+        <app-download-promocode [enabled]="created" [promoCodeBatchDetails]="promoCodeBatchDetails">
+        </app-download-promocode>
+
+    </mat-card-content>
+
+
+</mat-card>

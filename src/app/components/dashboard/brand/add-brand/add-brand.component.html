@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add New Brand</h2>
+
+
+<mat-dialog-content [formGroup]="brandForm" class="create-brand-dialog">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+
+        <mat-form-field>
+            <mat-label>Brand Name</mat-label>
+            <input matInput type="text" formControlName="brandName" placeholder="abc" aria-label="brandName">
+            <mat-error class="error-message" *ngIf="data.brandName.invalid">
+                <span *ngIf="data.brandName.errors?.required">BrandName is required</span>
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+
+        <button class="mat-raised-button mat-primary" (click)="addBrand()"> Save </button>
+
+        <button class="mat-raised-button" (click)="close()"> Cancel </button>
+    </div>
+
+</mat-dialog-actions>

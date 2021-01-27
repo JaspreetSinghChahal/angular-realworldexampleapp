@@ -1,0 +1,40 @@
+<mat-card class="mat-elevation-z8 bg-white" #brandContainer>
+    <mat-card-header style="flex-direction:column">
+        <div fxLayout="row" fxFlex="1 1 100%">
+            <mat-card-title> Brands</mat-card-title>
+        </div>
+        <div fxLayout="row" fxFlex="1 1 100%" fxLayoutAlign="space-between center" class="padd-10">
+
+            <button mat-button class="mat-raised-button mat-primary" (click)="addBrand()">
+                Add Brand
+            </button>
+
+            <mat-form-field>
+                <input matInput placeholder="Search" #input>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+
+
+        <mat-table [dataSource]="dataSource" matSort matSortActive="brandName" matSortDirection="asc"
+            matSortDisableClear>
+
+            <ng-container matColumnDef="brandName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Brand Name</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let brandName">{{brandName.brandName}}
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        <div fxLayoutAlign="center" class="padd-10" *ngIf="!(dataSource.page$ | async)">No Record Found</div>
+
+        <mat-paginator [length]="dataSource.page$ | async" [pageSize]="5" [pageSizeOptions]="[5, 10, 50]"
+            (page)="paginate()"></mat-paginator>
+
+    </mat-card-content>
+</mat-card>

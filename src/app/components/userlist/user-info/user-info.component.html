@@ -1,0 +1,120 @@
+<mat-card class="mat-elevation-z8 bg-white h-90pc" #userInfoContainer>
+
+    <mat-card-header>
+        <mat-card-title> User Info </mat-card-title>
+        <span fxFlex></span>
+        <button mat-icon-button color="primary" aria-label="edit icon" (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <form id="userInfo" [formGroup]="userInfoForm">
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input matInput type="text" [readonly]="!isEditable" formControlName="firstName" placeholder="John"
+                        aria-label="firstName">
+                    <mat-error class="error-message" *ngIf="data.firstName.invalid">
+                        <span *ngIf="data.firstName.errors?.required">FirstName is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput type="text" [readonly]="!isEditable" formControlName="lastName" placeholder="Doe"
+                        aria-label="lastName">
+                    <mat-error class="error-message" *ngIf="data.lastName.invalid">
+                        <span *ngIf="data.lastName.errors?.required">LastName is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput type="number" [readonly]="!isEditable" formControlName="phoneNumber"
+                        placeholder="1234567891" aria-label="phoneNumber">
+                    <mat-error class="error-message" *ngIf="data.phoneNumber.invalid">
+                        <span *ngIf="data.phoneNumber.errors?.required">Phone Number is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="text" [readonly]="!isEditable" formControlName="displayPassword"
+                        placeholder="####" aria-label="displayPassword">
+                    <mat-error class="error-message" *ngIf="data.displayPassword.invalid">
+                        <span *ngIf="data.displayPassword.errors?.required">Password is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+
+                <mat-form-field>
+                    <mat-label>Role</mat-label>
+                    <input *ngIf="!isEditable" matInput [value]="userRole" [readonly]="true">
+                    <mat-select *ngIf="isEditable" placeholder="Assign Role" formControlName="role"
+                        (selectionChange)="roleChange($event)">
+                        <mat-option *ngFor="let role of allRoles" [value]="role.id"> {{ role.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error class="error-message" *ngIf="data.role.invalid">
+                        <span *ngIf="data.role.errors?.required">Role is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Location</mat-label>
+                    <textarea matInput type="text" [readonly]="!isEditable" rows="3" formControlName="location"
+                        placeholder="New York" aria-label="location"></textarea>
+                    <mat-error class="error-message" *ngIf="data.location.invalid">
+                        <span *ngIf="data.location.errors?.required">Location is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+
+                <mat-form-field>
+                    <mat-label>Other Details</mat-label>
+                    <textarea matInput type="text" [readonly]="!isEditable" rows="3" formControlName="otherDetails"
+                        placeholder="comments" aria-label="otherDetails"></textarea>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="showEmail">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" [readonly]="!isEditable" formControlName="email"
+                        placeholder="abc@gmail.com" aria-label="email">
+                    <mat-error class="error-message" *ngIf="data.email.invalid">
+                        <span *ngIf="data.email.errors?.required">Email is required</span>
+                        <span *ngIf="data.email.errors?.pattern">Please enter valid email</span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+
+            <button mat-flat-button type="submit" [disabled]="!isEditable" (click)="updateUser()"
+                color="primary">Submit</button>
+            <button mat-flat-button type="submit" [disabled]="!isEditable" (click)="cancel()">Cancel</button>
+
+        </div>
+    </mat-card-actions>
+
+</mat-card>

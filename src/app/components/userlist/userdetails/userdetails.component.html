@@ -1,0 +1,23 @@
+<div fxLayout="row" fxFlex.lt-md="0 1 100%" fxFlex.lt-sm="100%" fxLayoutAlign="end" fxLayoutGap="10px" class="padd-10">
+    <button mat-button class="mat-raised-button mat-warn" (click)="resetPoints()">
+        Reset Points
+    </button>
+</div>
+
+
+<div fxLayout="row wrap" fxLayoutGap="10px grid" fxLayout.lt-sm="column">
+    <app-user-info fxFlex="0 1 50%" fxFlex.lt-md="0 1 50%" fxFlex.lt-sm="100%" [userId]="userId">
+    </app-user-info>
+
+    <app-user-reputation-by-brand fxFlex="0 1 50%" fxFlex.lt-md="0 1 50%" fxFlex.lt-sm="100%" [userId]="userId"
+        [refresh]="refreshOnPointsReset">
+    </app-user-reputation-by-brand>
+
+    <app-user-scan-activity fxFlex="0 1 100%" fxFlex.lt-md="0 1 100%" fxFlex.lt-sm="100%" [userId]="userId">
+    </app-user-scan-activity>
+
+    <app-user-point-reset fxFlex="0 1 50%" fxFlex.lt-md="0 1 50%" fxFlex.lt-sm="100%" [userId]="userId"
+        [refresh]="refreshOnPointsReset">
+    </app-user-point-reset>
+
+</div>

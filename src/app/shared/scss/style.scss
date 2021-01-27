@@ -1,0 +1,216 @@
+@import "variables";
+
+.padd-5 {
+    padding: 5px;
+}
+
+.padd-10 {
+    padding: 10px;
+}
+
+.padd-15 {
+    padding: 15px;
+}
+
+.padd-t-10 {
+    padding-top: 10px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.bg-white {
+    background: $white;
+}
+
+.h-100pc {
+    height: 100%;
+}
+
+.h-90pc {
+    height: 92%;
+}
+
+.mar-t-10
+{
+    margin-top: 10px;
+}
+
+.mar-t-30
+{
+    margin-top: 25px;
+}
+
+.success-cell{
+    border-radius: 5px;
+    text-align: center;
+    background-color: green;
+    flex: 0 0 30% !important;    
+    background: rgb(196,214,160);
+    color: rgb(80,99,42);
+}
+
+.failure-cell{
+    border-radius: 5px;
+    text-align: center;
+    background: rgb(229,185,181);
+    flex: 0 0 30% !important; 
+    color: rgb(97,38,33);
+}
+
+.success-cell-md{
+    border-radius: 5px;
+    text-align: center;
+    background-color: green;
+    flex: 0 0 50% !important;    
+    background: rgb(196,214,160);
+    color: rgb(80,99,42);
+}
+
+.failure-cell-md{
+    border-radius: 5px;
+    text-align: center;
+    background: rgb(229,185,181);
+    flex: 0 0 50% !important; 
+    color: rgb(97,38,33);
+}
+
+.bg-blue {
+    background-color: #45aef1;
+    color: #fff!important;
+}
+
+.bg-green {    
+    background-color: #46be8a !important;
+    color: #fff!important;
+}
+
+.bg-purple {
+    background-color: #926dde;
+    color: #fff!important;
+}
+
+.bg-red{
+    background-color: #f96868 !important;
+    color: #fff!important;
+}
+
+::ng-deep th.mat-header-cell, td.mat-cell{
+    border: none!important;
+}
+
+/*Auth components*/
+@import "~src/app/shared/scss/variables";
+
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    .content {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .app-name {
+            margin-top: 0px;
+            padding-bottom: 10px;
+            font-size: 32px;
+        }
+        .login-form {
+            padding: 40px;
+            background: $white;
+            max-width: 500px;
+            min-width: 350px;
+            box-shadow: 0 0 20px #ddd;
+            input:-webkit-autofill {
+                box-shadow: 0 0 0 30px $white inset;
+                -webkit-box-shadow: 0 0 0 30px $white inset;
+            }
+
+            .login-btn {
+                width: 100%;
+            }
+
+            mat-form-field {
+                width: 96%;
+
+                :host ::ng-deep .mat-form-field-prefix {
+                    padding-right: 8px;
+                }
+
+                :host ::ng-deep .mat-form-field-suffix {
+                    padding-left: 8px;
+                }
+            }
+        }
+    }
+    &:after {
+        content: "";
+        background: $white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 50%;
+        right: 0;
+    }
+    &:before {
+        content: "";
+        background: $primary-color;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+
+.alert .alert-link {
+  font-weight: bold;
+}
+
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+
+.alert > p + p {
+  margin-top: 5px;
+}
+
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}

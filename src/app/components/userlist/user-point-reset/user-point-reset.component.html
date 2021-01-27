@@ -1,0 +1,43 @@
+<mat-card class="mat-elevation-z8 bg-white" #userPointResetContainer>
+
+    <mat-card-header>
+
+        <mat-card-title> User Point Reset</mat-card-title>
+        <span fxFlex></span>
+        <mat-form-field fxLayout="row" fxLayoutAlign="end" class="padd-t-10">
+            <input matInput placeholder="Search" #input>
+        </mat-form-field>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-table class="w-100" [dataSource]="dataSource" matSort matSortActive="resetDateTime" matSortDirection="desc"
+            matSortDisableClear>
+
+            <ng-container matColumnDef="resetDateTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Reset DateTime</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">
+                    {{userActivity.resetDateTime | date:'medium'}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="resetPoints">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Reset Points</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">{{userActivity.resetPoints}}
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        <div fxLayoutAlign="center" class="padd-10" *ngIf="!(dataSource.page$ | async)">No Record Found</div>
+
+        <mat-paginator [length]="dataSource.page$ | async" [pageSize]="10" [pageSizeOptions]="[5, 10, 50]">
+        </mat-paginator>
+
+    </mat-card-content>
+
+</mat-card>

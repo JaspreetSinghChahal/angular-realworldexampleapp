@@ -1,0 +1,50 @@
+<mat-card class="mat-elevation-z8 bg-white h-90pc" #promotionMessageContainer>
+    <mat-card-header>
+
+        <mat-card-title> Promotion Message</mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content>
+
+        <div fxLayout="column" fxFlex="1 1 50%" fxLayoutAlign="center">
+
+            <div class="row">
+                <label class="file-label">
+
+                    <button mat-button class="mat-raised-button mat-primary" (click)="fileInput.click()"
+                        aria-label="uploadFile">
+                        <mat-icon>file_upload</mat-icon>
+                        Choose an image...
+                    </button>
+                    <span class="file-name">
+                        {{ fileName }}
+                    </span>
+
+                    <input #fileInput type="file" style="display: none" [accept]="acceptedTypes"
+                        (change)="filesChanged($event.target.files)" multiple="false" />
+
+                </label>
+            </div>
+
+            <div class="row" class="mar-t-10">
+
+                <button mat-button class="mat-raised-button mat-primary" [disabled]="!fileUploaded"
+                    (click)="uploadFiles()">
+                    Upload
+                </button>
+
+            </div>
+
+        </div>
+
+        <div fxLayout="column" fxFlex="1 1 50%">
+
+            <picture>
+                <img [src]="imageUrl" *ngIf="imageUrl" alt="promotion message image">
+                <mat-icon *ngIf="!imageUrl">add_a_photo</mat-icon>
+            </picture>
+
+        </div>
+
+    </mat-card-content>
+</mat-card>

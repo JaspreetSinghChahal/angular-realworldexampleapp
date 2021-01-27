@@ -1,0 +1,78 @@
+<section id="userlist" class="mat-elevation-z8 bg-white userlist">
+
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px" class="padd-10">
+        <button mat-button class="mat-raised-button mat-primary" (click)="addUser()">
+            Add User
+        </button>
+        <button mat-button class="mat-raised-button mat-accent" (click)="downloadUser()">
+            Download User
+        </button>
+        <button mat-button class="mat-raised-button mat-accent" (click)="downloadUserReputation()">
+            Download User Points
+        </button>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end" class="padd-10">
+        
+        <mat-form-field>
+            <input matInput placeholder="Search" #input>
+        </mat-form-field>
+    </div>
+
+    <mat-table class="w-100" [dataSource]="dataSource" matSort matSortDirection="asc" matSortDisableClear>
+
+        <ng-container matColumnDef="userName">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Username</mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <a fxFlexFill [routerLink]="'/userlist/'+user.id" class="mat-row-link">
+                    {{user.firstName}} {{user.lastName}}</a>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let user">{{user.phoneNumber}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="displayPassword">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let user">{{user.displayPassword}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Location</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let user">{{user.location}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="otherDetails">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Other Details</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let user">{{user.otherDetails}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Is Active</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let user">
+                <span [ngClass]="{'success-cell': user.isActive === true, 'failure-cell':  user.isActive === false}">
+                    {{user.isActive === true? 'Yes': 'No' }}
+                </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="termsAndConditonsAcceptedOn">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Terms Conditons Accepted</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let user">{{user.termsAndConditonsAcceptedOn | date:'medium'}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+
+    <div fxLayoutAlign="center" class="padd-10" *ngIf="!(dataSource.page$ | async)">No Record Found</div>
+
+    <mat-paginator [length]="dataSource.page$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
+        (page)="paginate()"></mat-paginator>
+</section>

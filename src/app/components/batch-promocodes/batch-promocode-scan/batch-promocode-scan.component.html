@@ -1,0 +1,64 @@
+<mat-card class="mat-elevation-z8 bg-white" #promoScanContainer>
+
+    <mat-card-header>
+
+        <mat-card-title> User Scan Activity</mat-card-title>
+        <span fxFlex></span>
+        <mat-form-field fxLayout="row" fxLayoutAlign="end" class="padd-t-10">
+            <input matInput placeholder="Search" #input>
+        </mat-form-field>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-table class="w-100" [dataSource]="dataSource" matSort matSortActive="scannedDateTime"
+            matSortDirection="desc" matSortDisableClear>
+
+            <ng-container matColumnDef="promoCodeNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>PromoCode Number</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">
+                    <a fxFlexFill [routerLink]="'/promocodes/'+userActivity.promoCodeNumber" class="mat-row-link">
+                        {{userActivity.promoCodeNumber}}</a>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>User Name</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">
+                    <a fxFlexFill [routerLink]="'/userlist/'+userActivity.userId" class="mat-row-link">
+                        {{userActivity.username}}</a>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="scannedDateTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Scanned DateTime</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">
+                    {{userActivity.scannedDateTime | date:'mediumDate' }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="isSuccess">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Is Success</mat-header-cell>
+                <mat-cell class="description-cell" *matCellDef="let userActivity">
+                    <span
+                        [ngClass]="{'success-cell': userActivity.isSuccess === true, 'failure-cell':  userActivity.isSuccess === false}">
+                        {{userActivity.isSuccess === true? 'Yes': 'No' }}</span>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        <div fxLayoutAlign="center" class="padd-10" *ngIf="!(dataSource.page$ | async)">No Record Found</div>
+
+        <mat-paginator [length]="dataSource.page$ | async" [pageSize]="10" [pageSizeOptions]="[5, 10, 50]"
+            (page)="paginate()">
+        </mat-paginator>
+
+    </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,78 @@
+<section id="userlist">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="padd-10">
+        <button mat-button class="mat-raised-button mat-warn" (click)="deleteData()">
+            Expire Batch
+        </button>
+
+        <mat-form-field>
+            <input matInput placeholder="Search" #input>
+        </mat-form-field>
+    </div>
+
+    <mat-table class="w-100" [dataSource]="dataSource" matSort matSortDirection="asc" matSortDisableClear>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isEntirePageSelected()"
+                    [indeterminate]="selection.hasValue() && !isEntirePageSelected()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="batchName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>BatchName</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let promocode">
+                <a fxFlexFill [routerLink]="'/batchpromocodes/'+promocode.batchId" class="mat-row-link">
+                    {{promocode.batchName}}</a>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="brandName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>BrandName</mat-header-cell>
+            <mat-cell class="description-cell" *matCellDef="let promocode">{{promocode.brandName}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="loyaltyPoints">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>LoyaltyPoints</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let promocode">{{promocode.loyaltyPoints}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expirationDateTime">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>ExpirationDateTime</mat-header-cell>
+            <mat-cell class="duration-cell" *matCellDef="let promocode">
+                <span
+                    [ngClass]="{'success-cell-md': promocode.isExpired === false, 'failure-cell-md':  promocode.isExpired === true}">
+                    {{promocode.expirationDateTime | date:'mediumDate'}}
+                </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="noOfPromoCodes">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>NoOfPromoCodes</mat-header-cell>
+            <mat-cell *matCellDef="let promocode">{{promocode.noOfPromoCodes}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="noOfPromoCodesScannedSuccessfully">
+            <mat-header-cell mat-sort-header *matHeaderCellDef>Scanned Successfully</mat-header-cell>
+            <mat-cell *matCellDef="let promocode">{{promocode.noOfPromoCodesScannedSuccessfully}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+
+    <div fxLayoutAlign="center" class="padd-10" *ngIf="!(dataSource.page$ | async)">No Record Found</div>
+
+    <mat-paginator [length]="dataSource.page$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
+        (page)="paginate()"></mat-paginator>
+</section>

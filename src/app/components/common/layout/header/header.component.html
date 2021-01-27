@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="fix-nav">
+    <button type="button" mat-icon-button (click)="toggleSidebar()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <div class="nav-brand">
+        Autobot
+    </div>
+    <span class="nav-spacer"></span>
+    <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profile="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </button>
+    </mat-menu>
+    <button mat-icon-button (click)="onLoggedout()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>

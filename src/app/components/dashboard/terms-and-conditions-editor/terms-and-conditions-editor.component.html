@@ -1,0 +1,30 @@
+<mat-card class="mat-elevation-z8 bg-white" #userInfoContainer>
+
+    <mat-card-header>
+        <mat-card-title> Terms And Conditions Editor</mat-card-title>
+        <span fxFlex></span>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <form id="termsAndConditions" [formGroup]="termsAndConditionsForm">
+
+            <angular-editor formControlName="termsAndConditionsEditor" [config]="editorConfig"></angular-editor>
+
+        </form>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+
+            <button mat-flat-button type="submit" (click)="updateTermsAndConditions()"
+                color="primary">Submit</button>
+            <button mat-flat-button type="submit" (click)="cancel()">Cancel</button>
+
+        </div>
+
+    </mat-card-actions>
+
+</mat-card>

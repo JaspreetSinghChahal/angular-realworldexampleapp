@@ -1,0 +1,39 @@
+mat-icon {
+    vertical-align: middle;
+}
+
+mat-divider {
+    margin-top: 20px;
+}
+
+.large-btn{
+    width: 100%;
+}
+
+.success-btn
+{
+    background-color: green;
+}
+
+.warn-btn
+{
+    background-color: orange;
+}
+
+.error-btn
+{
+    background-color: red;
+}
+
+::ng-deep .success{
+    border: solid 2px green;
+    border-radius: 4px;
+}
+
+::ng-deep .warn{
+    border: solid 2px orange;
+}
+
+::ng-deep .error{
+    border: solid 2px red;
+}

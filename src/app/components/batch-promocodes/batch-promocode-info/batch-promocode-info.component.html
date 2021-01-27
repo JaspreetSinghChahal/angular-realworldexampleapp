@@ -1,0 +1,90 @@
+<mat-card class="mat-elevation-z8 bg-white" #promocodeInfoContainer>
+
+    <mat-card-header>
+        <mat-card-title> Promocode Info </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <div fxFlexLayout="row">
+
+            <section #promoCodeinfo>
+
+                <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start">
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Loyalty Points</mat-label>
+                            <input matInput type="number" [readonly]="true" value={{promocodeInfo?.loyaltyPoints}}
+                                placeholder="000" aria-label="loyaltyPoints" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Expiration Date</mat-label>
+                            <input matInput [matDatepicker]="picker" value={{promocodeInfo?.expirationDateTime}}
+                                [readonly]="true" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Brand Name</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.brandName}}
+                                placeholder="brand" aria-label="brandName" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Batch Name</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.batchName}}
+                                aria-label="batchName" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>No of Promocodes</mat-label>
+                            <input matInput type="text" [readonly]="true" value={{promocodeInfo?.noOfPromoCodes}}
+                                placeholder="brand" aria-label="noOfPromoCodes" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Scanned Successfully</mat-label>
+                            <input matInput type="text" [readonly]="true"
+                                value={{promocodeInfo?.noOfPromoCodesScannedSuccessfully}}
+                                aria-label="noOfPromoCodesScannedSuccessfully" />
+                        </mat-form-field>
+                    </div>
+
+
+                    <div fxFlex="0 1 calc(33.3% - 30px)">
+                        <mat-form-field>
+                            <mat-label>Created On</mat-label>
+                            <input matInput type="text" [readonly]="true"
+                                [value]="promocodeInfo?.createdOn | date:'mediumDate'" aria-label="createdOn" />
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <mat-divider class="promocode-horizontal-divider"></mat-divider>
+
+
+            <app-download-promocode [enabled]="downloadEnabled" [promoCodeBatchDetails]="promocodeInfo">
+            </app-download-promocode>
+
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

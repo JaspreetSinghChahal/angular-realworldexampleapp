@@ -1,0 +1,72 @@
+<div class="login-page">
+    <div class="content px20">
+
+        <form id="login" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h2>Sign In</h2>
+
+            <div class="text-center">
+                <h2 class="app-name">{{applicationName}}</h2>
+            </div>
+
+            <section class="fields">
+
+                <div>
+                    <mat-form-field>
+                        <mat-icon matPrefix>phone</mat-icon>
+                        <input matInput type="text" formControlName="username" placeholder="Username"
+                            aria-label="Username">
+                        <mat-error class="error-message" *ngIf="data.username.invalid">
+                            <span *ngIf="data.username.errors?.required">Username is required</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+
+                    <mat-form-field>
+                        <mat-icon matPrefix>lock</mat-icon>
+                        <input matInput placeholder="Password" formControlName="password"
+                            [type]="hidePassword ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hidePassword = !hidePassword" class="pointer">
+                            {{hidePassword ?'visibility_off' :'visibility'}}
+                        </mat-icon>
+                        <mat-error class="error-message" *ngIf="data.password.invalid">
+                            <span *ngIf="data.password.errors?.required">Password is required</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </section>
+
+            <section>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">                    
+                    <div>
+                        <a routerLink="/password-recovery" class="md-default-primary">Password
+                            recovery</a>
+                    </div>
+                </div>
+                <div id="server-alert" *ngIf="loginErrorMsg" class="alert alert-danger w-100">
+                    <span>
+                        {{ loginErrorMsg }}
+                    </span>
+                </div>
+
+            </section>
+
+            <section class="submit">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div [style.visibility]="waiting ? 'visible' : 'hidden'" class="spin-container animation-spin">
+                        <mat-icon aria-label="loading" color="primary" class="x2">autorenew</mat-icon>
+                    </div>
+                    <button mat-flat-button type="submit" class="login-btn" [disabled]="waiting"
+                        color="primary">Login</button>
+                </div>
+
+            </section>
+
+        </form>
+
+    </div>
+</div>

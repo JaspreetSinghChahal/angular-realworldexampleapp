@@ -1,0 +1,17 @@
+<mat-dialog-content>
+
+    <div fxFlex fxLayoutAlign="center">
+        <h2> {{ data.content }}</h2>
+    </div>
+
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions fxLayoutAlign="center">`
+
+    <button mat-raised-button
+        [ngClass]="{'success-btn': alertType == 'success', 'warn-btn':  alertType == 'warn', 'error-btn':  alertType == 'error'}"
+        [mat-dialog-close]="data.title"> {{ data.closeButtonLabel }} </button>
+
+</mat-dialog-actions>

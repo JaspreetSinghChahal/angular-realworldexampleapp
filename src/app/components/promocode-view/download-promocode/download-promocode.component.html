@@ -1,0 +1,36 @@
+<section #downloadPromoCode class="padd-15">
+
+    <h2>Download Qr Codes</h2>
+    <form id="downloadQrCode" [formGroup]="downloadQrCodeForm">
+
+        <div fxLayout=" row" fxLayoutAlign="start">
+
+            <mat-form-field>
+                <mat-label>Dimension</mat-label>
+                <input matInput type=" number" [readonly]="!enabled" formControlName="height" placeholder="256"
+                    aria-label="height">
+                <mat-error class="error-message" *ngIf="data.height.invalid">
+                    <span *ngIf="data.height.errors?.required">Dimension is required</span>
+                    <span *ngIf="data.height.errors?.pattern">Enter integer value</span>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <input matInput [ngxMatColorPicker]="picker" formControlName="colorCtr">
+                <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+                <mat-error class="error-message" *ngIf="data.colorCtr.invalid">
+                    <span *ngIf="data.colorCtr.errors?.required">Color is required</span>
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+    </form>
+    <div fxLayout=" row" fxLayoutAlign="start" class="addPromocode-btn">
+
+        <button mat-flat-button type="submit" (click)="downloadQRCode()" [disabled]="!enabled"
+            color="primary">Download</button>
+    </div>
+
+</section>
